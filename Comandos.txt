@@ -2,3 +2,7 @@ docker compose up -d
 
 #Acesso interno ao docker: 
 docker exec -it postgres_spring3 psql -U root -d bd_spring
+
+
+chmod +x mvnw
+./mvnw spring-boot:run

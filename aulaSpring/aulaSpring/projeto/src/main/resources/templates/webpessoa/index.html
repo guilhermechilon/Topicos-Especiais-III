@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Pessoas</title>
+  <link rel="stylesheet" href="css/style.css"> <!-- Arquivo CSS opcional -->
+  <style>
+    /* CSS básico inline para visualização */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .main-content {
+      max-width: 500px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .botao {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .erro {
+      color: red;
+      font-size: 0.9em;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Simulação do fragmento navbar -->
+  <div id="navbar">
+    <!-- Substitua por seu conteúdo de navbar -->
+    <p><strong>Navbar</strong> (simulação)</p>
+  </div>
+
+  <main class="main-content">
+    <h1>Cadastrar Pessoas</h1>
+
+    <form id="formPessoa">
+      <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Nome Completo" required />
+        <div id="erroNome" class="erro"></div>
+      </div>
+
+      <div>
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" name="idade" required />
+        <div id="erroIdade" class="erro"></div>
+      </div>
+
+      <button type="submit" class="botao">Salvar</button>
+    </form>
+
+    <div id="resultado" style="margin-top: 30px; display: none;">
+      <h3>Pessoa Cadastrada:</h3>
+      <p><strong>Nome:</strong> <span id="resNome"></span></p>
+      <p><strong>Idade:</strong> <span id="resIdade"></span></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>2025 Meu App</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formPessoa');
+    const nomeInput = document.getElementById('nome');
+    const idadeInput = document.getElementById('idade');
+    const erroNome = document.getElementById('erroNome');
+    const erroIdade = document.getElementById('erroIdade');
+    const resultado = document.getElementById('resultado');
+    const resNome = document.getElementById('resNome');
+    const resIdade = document.getElementById('resIdade');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Limpar erros
+      erroNome.textContent = '';
+      erroIdade.textContent = '';
+
+      const nome = nomeInput.value.trim();
+      const idade = idadeInput.value.trim();
+
+      let valido = true;
+
+      if (!nome) {
+        erroNome.textContent = 'O nome é obrigatório.';
+        valido = false;
+      }
+
+      if (!idade || idade < 0) {
+        erroIdade.textContent = 'Informe uma idade válida.';
+        valido = false;
+      }
+
+      if (valido) {
+        // Mostrar os dados abaixo do formulário
+        resNome.textContent = nome;
+        resIdade.textContent = idade;
+        resultado.style.display = 'block';
+
+        // Limpar formulário
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
